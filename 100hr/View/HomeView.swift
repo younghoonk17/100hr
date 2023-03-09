@@ -51,45 +51,87 @@ struct HomeView: View {
                 
                 VStack {
                     Text(oneQuote)
+                        .padding()
                         .foregroundColor(Color.white)
+                        .frame(maxWidth: .infinity)
+                        .background(Color(hex: "181718"))
+                        .cornerRadius(12)
+                        .padding([.bottom, .trailing, .leading])
                 }
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color(hex: "181718"))
-                .cornerRadius(15)
-                
+
                 HStack {
-                    NavigationLink(destination: TestView()){
-                        Text("Total grind time: ")
-                            .font(.title)
-                            .foregroundColor(Color.white)
-                        Text("\(sessions.map{$0.time}.reduce(0,+))")
-                            .font(.largeTitle)
-                            .foregroundColor(Color.white)
+                    NavigationLink(destination: DetailView()){
+                        VStack {
+                            Text("Total grind time ")
+                                .font(.subheadline)
+                            
+                            Text("\(sessions.map{$0.time}.reduce(0,+))")
+                                .font(.largeTitle)
+                            Text("hours")
+                                .font(.caption)
+                        }
+                        .padding([.bottom, .top], 20)
                     }
-                    .frame(maxWidth: .infinity)
-                    .padding()
+                    .font(.title3)
+                    .foregroundColor(Color.white)
+                    .frame(maxWidth: .infinity, minHeight: 66)
                     .background(Color(hex: "181718"))
-                    .cornerRadius(15)
+                    .cornerRadius(12)
+                    .padding([.bottom, .leading])
+                    
+                    NavigationLink(destination: DetailView()){
+                        VStack {
+                            Text("Total grind sessions ")
+                                .font(.subheadline)
+                            Text("\(sessions.map{$0.time}.count)")
+                                .font(.largeTitle)
+                            Text("sessions")
+                                .font(.caption)
+                        }
+                        .padding([.bottom, .top], 20)
+                    }
+                    .font(.title3)
+                    .foregroundColor(Color.white)
+                    .frame(maxWidth: .infinity, minHeight: 66)
+                    .background(Color(hex: "181718"))
+                    .cornerRadius(12)
+                    .padding([.bottom, .trailing, .leading])
                 }
+                
+                VStack {
+                    VStack{
+                        Text("Streak counter")
+                            .font(.title3)
+                        Text("\(sessions.map{$0.time}.count)X")
+                            .font(.largeTitle)
+
+                    }
+                    .padding()
+
+                }
+                .foregroundColor(Color.white)
+                .frame(maxWidth: .infinity, minHeight: 66)
+                .background(Color(hex: "181718"))
+                .cornerRadius(12)
+                .padding([.bottom, .trailing, .leading])
+
 
                 Spacer()
                 
                 VStack {
                     NavigationLink(destination: TimerView().navigationBarBackButtonHidden(true)){
                         Text("Grind")
-                            .font(.title)
+                            .font(.title3)
                             .foregroundColor(Color.black)
-                            .frame(maxWidth: .infinity)
                     }
+                    .frame(maxWidth: .infinity, minHeight: 44)
+                    .background(Color.white)
+                    .cornerRadius(12)
+                    .padding()
                 }
-                .padding()
-                .padding(5)
-                .background(Color.white)
-                .cornerRadius(15)
+
             }
             .background(Color.black)
-            Spacer()
         }
         
     }

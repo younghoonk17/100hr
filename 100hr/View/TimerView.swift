@@ -1,13 +1,16 @@
 import SwiftUI
 
 struct TimerView: View {
-    @State var progressTime = 0
+    @State var progressTime: Int = 0
     @State private var timer: Timer?
     @State var timerRunning = false
+    @State var date: Date = Date.now
+
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(entity: Session.entity(), sortDescriptors: [])
+    private var sessions: FetchedResults<Session>
     
     @EnvironmentObject var appData: AppData
-    
-    @State var shouldAnimate = false
     
     var hour: Int {
         progressTime / 216000
@@ -25,33 +28,29 @@ struct TimerView: View {
         progressTime % 100
     }
     
-    
     var body: some View {
         VStack{
             
-            VStack(spacing: 50){
-                HStack {
-                    Circle()
-                        .fill(Color.init(hex: "01327C"))
-                        .frame(width: 50, height: 20)
-                        .scaleEffect(shouldAnimate ? 1.0 : 0.5)
-                        .animation(shouldAnimate ? Animation.easeInOut(duration: 0.5).repeatForever().delay(0) : Animation.default)
-                    Circle()
-                        .fill(Color.init(hex: "01327C"))
-                        .frame(width: 50, height: 20)
-                        .scaleEffect(shouldAnimate ? 1.0 : 0.5)
-//                        .animation(Animation.easeInOut(duration: 0.5).repeatForever().delay(0.3), value: shouldAnimate)
-                        .animation(shouldAnimate ? Animation.easeInOut(duration: 0.5).repeatForever().delay(0.3) : Animation.default)
-
-                    Circle()
-                        .fill(Color.init(hex: "01327C"))
-                        .frame(width: 50, height: 20)
-                        .scaleEffect(shouldAnimate ? 1.0 : 0.5)
-//                        .animation(Animation.easeInOut(duration: 0.5).repeatForever().delay(0.6), value: shouldAnimate)
-                        .animation(shouldAnimate ? Animation.easeInOut(duration: 0.5).repeatForever().delay(0.6) : Animation.default)
-
+            HStack() {
+                VStack(alignment: .leading){
+                    Text("Timer,")
+                        .font(.title)
+                        .fontWeight(.thin)
+                        .foregroundColor(Color.white)
+                    
+                    Text("\(getStringTime(dateInput: date))")
+                        .font(.largeTitle)
+                        .foregroundColor(Color.white)
+                    
                 }
-                
+                Spacer()
+            }
+            .padding()
+            
+            ZStack(){
+                Circle()
+                    .stroke(Color(hex:"181718"), lineWidth: 10)
+
                 HStack() {
                     Text("\(minutes)")
                         .frame(width: 60, height: 50)
@@ -69,11 +68,8 @@ struct TimerView: View {
                 .font(.system(size: 30))
                 .foregroundColor(Color.white)
             }
-            .frame(minHeight: 200)
             .padding()
-            .padding(5)
-            .background(Color(hex: "181718"))
-            .cornerRadius(15)
+            .frame(minHeight: 200)
             
             Spacer()
             
@@ -81,11 +77,9 @@ struct TimerView: View {
                 Button(action: {
                     if (self.timerRunning == false) {
                         self.timerRunning = true
-                        self.shouldAnimate = true
                         startTimer()
                     }else {
                         self.timerRunning = false
-                        self.shouldAnimate = false
                         self.timer?.invalidate()
                     }
                 })
@@ -93,26 +87,26 @@ struct TimerView: View {
                     Text(timerRunning ? "Pause" : "Start")
                         .frame(maxWidth: .infinity)
                 }
+                .frame(maxWidth: .infinity, minHeight: 44)
                 .font(.title)
                 .foregroundColor(Color.black)
-                .padding()
                 .background(Color.white)
-                .cornerRadius(15)
+                .cornerRadius(12)
                 
                 Button(action: {
-                    appData.progressTime += progressTime
                     appData.rootViewId = UUID()
+                    saveSession()
                 })
                 {
                     Text("Finish")
                         .frame(maxWidth: .infinity)
                     
                 }
+                .frame(maxWidth: .infinity, minHeight: 44)
                 .font(.title)
                 .foregroundColor(Color.black)
-                .padding()
                 .background(Color.white)
-                .cornerRadius(15)
+                .cornerRadius(12)
             }
             
             Button(
@@ -120,16 +114,16 @@ struct TimerView: View {
             )
             {
                 Text("Cancel")
-                    .frame(maxWidth: .infinity)
             }
+            .frame(maxWidth: .infinity, minHeight: 44)
             .font(.title)
             .foregroundColor(Color.black)
-            .padding()
             .background(Color.white)
-            .cornerRadius(15)
+            .cornerRadius(12)
             .buttonStyle(.plain)
             
         }
+        .padding()
         .onDisappear {
             timer?.invalidate()
         }
@@ -138,10 +132,34 @@ struct TimerView: View {
         
     }
     
+    private func getStringTime(dateInput:Date ) -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        return dateFormatter.string(from: date)
+    }
+    
     private func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { _ in
             progressTime += 1
         })
+    }
+    
+    private func saveSession() {
+        withAnimation {
+            let session = Session(context: viewContext)
+            session.time = Int64(progressTime)
+            session.date = date
+            saveContext()
+        }
+    }
+    
+    private func saveContext() {
+        do {
+            try viewContext.save()
+        } catch {
+            let error = error as NSError
+            fatalError("An error occured: \(error)")
+        }
     }
 }
 

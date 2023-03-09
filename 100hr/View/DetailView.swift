@@ -1,15 +1,8 @@
-//
-//  TestView.swift
-//  100hr
-//
-//  Created by Yh on 6/03/23.
-//
-
 import Foundation
 import SwiftUI
 import CoreData
 
-struct TestView: View {
+struct DetailView: View {
     
     @State var date: Date = Date.now
     @State var time: Int = 0
@@ -21,27 +14,6 @@ struct TestView: View {
     
     var body: some View {
         NavigationView {
-//            VStack {
-//                DatePicker(selection: $date, in: ...Date.now, displayedComponents: .date) {
-//                    Text("Select a date")
-//                }
-//                TextField("Product quantity", value: $time, formatter: NumberFormatter())
-//
-//                HStack {
-//                    Spacer()
-//                    Button("Add") {
-//                        addProduct()
-//                    }
-//                    Spacer()
-//                    Button("Clear") {
-//                        date = Date.now
-//                        time = 0
-//                    }
-//                    Spacer()
-//                }
-//                .padding()
-//                .frame(maxWidth: .infinity)
-                
                 List {
                     ForEach(sessions) { s in
                         HStack {
@@ -54,16 +26,6 @@ struct TestView: View {
                 }
         }
     }
-    
-    private func addProduct() {
-        withAnimation {
-            let session = Session(context: viewContext)
-            session.time = Int64(time)
-            session.date = date
-            saveContext()
-        }
-    }
-    
     private func saveContext() {
         do {
             try viewContext.save()
@@ -82,9 +44,9 @@ struct TestView: View {
     
 }
 
-struct TestView_preview: PreviewProvider {
+struct DetailView_preview: PreviewProvider {
     static var previews: some View {
-        TestView()
+        DetailView()
     }
 }
 
