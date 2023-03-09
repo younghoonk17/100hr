@@ -8,8 +8,7 @@
 import Foundation
 import SwiftUI
 
-class Data: ObservableObject {
-//    static let shared = Quotes()
+class AppData: ObservableObject {
     
     @Published var rootViewId = UUID()
 
@@ -20,6 +19,7 @@ class Data: ObservableObject {
         "Greatness is sifted through the grind, therefore don't despise the hard work now for surely it will be worth it in the end."
     ]
     
-    @Published var totalTime = 0
+    @Published var progressTime = 0
+    
     
 }

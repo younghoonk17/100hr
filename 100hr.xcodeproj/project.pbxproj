@@ -7,17 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BE9BA49C298E28DF002126DE /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9BA49B298E28DF002126DE /* Data.swift */; };
+		BE9BA49C298E28DF002126DE /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9BA49B298E28DF002126DE /* AppData.swift */; };
 		BE9BA4A1298E4ECB002126DE /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9BA4A0298E4ECB002126DE /* HomeController.swift */; };
 		BE9BA4A3298E5DFD002126DE /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9BA4A2298E5DFD002126DE /* TimerView.swift */; };
 		BEDBBCB7298A543E00BB3DF0 /* _00hrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDBBCB6298A543E00BB3DF0 /* _00hrApp.swift */; };
 		BEDBBCB9298A543E00BB3DF0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDBBCB8298A543E00BB3DF0 /* HomeView.swift */; };
 		BEDBBCBB298A543F00BB3DF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEDBBCBA298A543F00BB3DF0 /* Assets.xcassets */; };
 		BEDBBCBE298A543F00BB3DF0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEDBBCBD298A543F00BB3DF0 /* Preview Assets.xcassets */; };
+		F802905E29B331A1002E5680 /* Session.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F802905C29B331A1002E5680 /* Session.xcdatamodeld */; };
+		F802906029B5C364002E5680 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F802905F29B5C364002E5680 /* PersistenceController.swift */; };
+		F830C5A929B5C5C10081D95F /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F830C5A829B5C5C10081D95F /* TestView.swift */; };
+		F8FDCFC7299AE848000383B3 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FDCFC6299AE848000383B3 /* ColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BE9BA49B298E28DF002126DE /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		BE9BA49B298E28DF002126DE /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		BE9BA4A0298E4ECB002126DE /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		BE9BA4A2298E5DFD002126DE /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		BEDBBCB3298A543E00BB3DF0 /* 100hr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 100hr.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -25,6 +29,10 @@
 		BEDBBCB8298A543E00BB3DF0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BEDBBCBA298A543F00BB3DF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEDBBCBD298A543F00BB3DF0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F802905D29B331A1002E5680 /* Session.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Session.xcdatamodel; sourceTree = "<group>"; };
+		F802905F29B5C364002E5680 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		F830C5A829B5C5C10081D95F /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		F8FDCFC6299AE848000383B3 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +51,7 @@
 			children = (
 				BEDBBCB8298A543E00BB3DF0 /* HomeView.swift */,
 				BE9BA4A2298E5DFD002126DE /* TimerView.swift */,
+				F830C5A829B5C5C10081D95F /* TestView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -50,7 +59,7 @@
 		BE9BA49E298E4E6E002126DE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BE9BA49B298E28DF002126DE /* Data.swift */,
+				BE9BA49B298E28DF002126DE /* AppData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -59,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				BE9BA4A0298E4ECB002126DE /* HomeController.swift */,
+				F802905F29B5C364002E5680 /* PersistenceController.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -82,6 +92,8 @@
 		BEDBBCB5298A543E00BB3DF0 /* 100hr */ = {
 			isa = PBXGroup;
 			children = (
+				F802905C29B331A1002E5680 /* Session.xcdatamodeld */,
+				F8FDCFC5299AE82C000383B3 /* Extension */,
 				BE9BA49F298E4E7F002126DE /* ViewModel */,
 				BE9BA49E298E4E6E002126DE /* Model */,
 				BE9BA49D298E4E4F002126DE /* View */,
@@ -98,6 +110,14 @@
 				BEDBBCBD298A543F00BB3DF0 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F8FDCFC5299AE82C000383B3 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F8FDCFC6299AE848000383B3 /* ColorExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,11 +190,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F802906029B5C364002E5680 /* PersistenceController.swift in Sources */,
+				F802905E29B331A1002E5680 /* Session.xcdatamodeld in Sources */,
 				BE9BA4A3298E5DFD002126DE /* TimerView.swift in Sources */,
 				BE9BA4A1298E4ECB002126DE /* HomeController.swift in Sources */,
 				BEDBBCB9298A543E00BB3DF0 /* HomeView.swift in Sources */,
+				F830C5A929B5C5C10081D95F /* TestView.swift in Sources */,
+				F8FDCFC7299AE848000383B3 /* ColorExtension.swift in Sources */,
 				BEDBBCB7298A543E00BB3DF0 /* _00hrApp.swift in Sources */,
-				BE9BA49C298E28DF002126DE /* Data.swift in Sources */,
+				BE9BA49C298E28DF002126DE /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +327,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"100hr/Preview Content\"";
+				DEVELOPMENT_TEAM = 7Y7ATQNHHM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -331,6 +356,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"100hr/Preview Content\"";
+				DEVELOPMENT_TEAM = 7Y7ATQNHHM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -373,6 +399,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F802905C29B331A1002E5680 /* Session.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F802905D29B331A1002E5680 /* Session.xcdatamodel */,
+			);
+			currentVersion = F802905D29B331A1002E5680 /* Session.xcdatamodel */;
+			path = Session.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BEDBBCAB298A543E00BB3DF0 /* Project object */;
 }
